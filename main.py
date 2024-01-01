@@ -11,8 +11,6 @@ def get_openai_response(prompt, model="gpt-3.5-turbo", temperature=0.7):
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
-                #{"role": "assistant", "content": "Who's there?"}
-                #{"role": "user", "content": "Orange."},
             ],
             temperature=temperature
         )
