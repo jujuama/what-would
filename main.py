@@ -1,5 +1,7 @@
 import os
-import openai
+from openai import OpenAI
+
+client = OpenAI(api_key=os.getenv('OPEN_API_KEY'))
 import pinecone
 
 
@@ -26,7 +28,7 @@ def __main(user_input):
     query = user_input
     print(query)
 
-    xq = openai.Embedding.create(input=query, engine=MODEL)['data'][0]['embedding']  # transforms query into embedding
+    xq = client.embeddings.create(input=query, engine=MODEL)['data'][0]['embedding']  # transforms query into embedding
 
     res = index.query([xq], top_k=5,
                       include_metadata=True)  # similaritysearch your db with your question, returns 5 chunks in lists of dictionaries
@@ -39,7 +41,6 @@ def __main(user_input):
         print(f"{chunks['score']:.2f}: {chunks['metadata']['text']}") #replace print with app.logger.info for render
 
 
-    openai.api_key = os.getenv('OPEN_API_KEY')
 
     # Start the conversation
     print("Starting the conversation. Type 'exit' to end.")

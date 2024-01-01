@@ -74,7 +74,6 @@ def add_text_to_db():
         print('working on doc: {}/{}'.format(counter, len(context_texts)))
 
         MODEL = "text-embedding-ada-002"
-        openai.api_key = os.getenv('OPENAI_API_KEY')
         res = openai.embeddings.create(
             model=MODEL,
             input=[
