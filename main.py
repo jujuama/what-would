@@ -8,7 +8,7 @@ import pinecone
 def get_openai_response(prompt, model="gpt-3.5-turbo", temperature=0.7):
     """Get a response from OpenAI's GPT model."""
     try:
-        response = openai.chat.completions.create(
+        response = client.chat.completions.create(
             model=model,
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
