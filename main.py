@@ -1,8 +1,9 @@
 import os
 from openai import OpenAI
+import pinecone
 
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
-import pinecone
+
 
 
 def get_openai_response(prompt, model="gpt-3.5-turbo", temperature=0.7):
